@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from 'dotenv';
+import Blog from "./models/blog.js";
+
 dotenv.config();
 
 const app = express();
