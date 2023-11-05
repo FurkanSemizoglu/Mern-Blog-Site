@@ -22,7 +22,7 @@ app.use("/blogs" , postRoutes);
 
 const PORT = process.env.PORT;
 
-/* mongoose
+ mongoose
   .connect(process.env.DATABASE_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -35,11 +35,11 @@ const PORT = process.env.PORT;
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
-  }); */
+  }); 
 
-
+/*
 app.listen(PORT , () => {
     console.log("The surver is running in " + PORT + " port")
 })
-
+*/
 
