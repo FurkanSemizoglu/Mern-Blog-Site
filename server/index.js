@@ -4,22 +4,58 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import Blog from "./models/blog.js";
-import postRoutes from "./routes/blog.js"
+import blogRoutes from "./routes/blog.js"
 dotenv.config();
 
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: "false" }));
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Its working don't worry :D ");
-});
 
-app.use("/blogs" , postRoutes);
+app.use("/" , blogRoutes);
 
+/* 
+app.post("/postBlog" , async (req,res) => {
+
+  //res.json({ "message" : "Fomr submir"})
+
+  console.log(req.body)
+
+  try {
+    const {title ,content} = req.body
+    const newBlog = new Blog({title, content})
+    const result = await newBlog.save()
+    res.status(201).json(result);
+    console.log("Connected to postBlog");
+  } catch (error) {
+    console.log("doesnt Connected to postBlog");
+    res.status(404).json({
+      message : error.message
+      
+    })
+  }
+ /*  try{
+    const  title  = req.body.title;
+    const  content  = req.body.content;
+    console.log("title" , title);
+    const newBlog = new Blog({ title : title, content :content });
+    const result = await newBlog.save();
+    res.status(201).json(result);
+    console.log("Connected to postBlog");
+
+  }catch(error){
+    console.log("doesnt Connected to postBlog");
+    res.status(404).json({
+      message : error.message
+      
+    })
+      ***
+  } 
+}) 
+*/
 const PORT = process.env.PORT;
 
  mongoose
@@ -37,9 +73,5 @@ const PORT = process.env.PORT;
     console.error("Error connecting to MongoDB:", error);
   }); 
 
-/*
-app.listen(PORT , () => {
-    console.log("The surver is running in " + PORT + " port")
-})
-*/
+
 
